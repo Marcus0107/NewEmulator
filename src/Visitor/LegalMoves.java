@@ -13,8 +13,9 @@ public class LegalMoves implements LegalMovesVis {
         LinkedList<String> legalMoves = new LinkedList<>();
         String[] vertical = {"A", "B", "C"};
         String[] horizontal = {"1", "2", "3"};
-        for (int i = 0; i < horizontal.length; i++) {
-            for (int y = 0; i < vertical.length; y++) {
+        int length = horizontal.length;
+        for (int i = 0; i < length; i++) {
+            for (int y = 0; y < length; y++) {
                 String point = vertical[i] + horizontal[y];
                 if (game.getBoard().get(point) == "") {
                     legalMoves.add(point);

@@ -18,7 +18,7 @@ public class EasyPlayerTwo implements ComputePlayerTwo {
         LinkedList<String> moves = game.accept(new LegalMoves());
         int movesCount = moves.size();
 
-        int randomNum = ThreadLocalRandom.current().nextInt(0, movesCount + 1);
+        int randomNum = ThreadLocalRandom.current().nextInt(0, movesCount );
 
         return game.doMove(moves.get(randomNum) + " X");
     }

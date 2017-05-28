@@ -1,48 +1,56 @@
 package com.company;
 
 import Games.TicTacToe;
-import Observer.Listener;
+import Strategy.EasyPlayerTwo;
 import Strategy.HumanPlayerTwo;
 import Visitor.Printer;
 
 import java.io.IOException;
+import java.util.Date;
 
-public class Main {
+public class Main
+{
 
-    public static void main(String[] args) throws IOException {
-        // cTacToe game = new TicTacToe(new HumanPlayerTwo(), new Player("Marcus","test@test.de","Displa Marcus",new Date(2017,1,1)),new Player("Marcus","test@test.de","Displa Marcus",new Date(2017,1,1)));
-        TicTacToe game = new TicTacToe(new HumanPlayerTwo());
-        boolean playerOneToMove = true;
+    public static void main(String[] args) throws IOException
+    {
 
-        game.addPlayOneListener(new Listener() {
-            @Override
-            public boolean moveDone() {
-                System.out.println("Pop Up Player one moved");
-                return true;
-            }
+        TicTacToeBuilder builder = new TicTacToeBuilder();
+        builder.setOne(new Player("Marcus", "Marcus@Test.de", "Tic Tac Toe Master", new Date(2017, 1, 1)));
+
+        builder.setStrategy(new HumanPlayerTwo());
+        builder.addListeners((game1, move) ->
+        {
+            game1.addMove(move);
+            System.out.println("Pop up - your opponent moved");
 
         });
-        game.addPlayerTwoListener(new Listener() {
-            @Override
-            public boolean moveDone() {
-                System.out.println("Player two moved");
-              return false;
-            }
-        });
-        game.accept(new Printer());
 
-        boolean isRunning = true;
-        while (isRunning) {
-            if (playerOneToMove) {
-                isRunning = game.doMove(game.readMove());
-                game.getPlayerOne().moveDone();
-            } else {
-                isRunning = game.simulatePlayerTwo();
-                game.getPlayerTwo().moveDone();
-            }
-
+        if (builder.getStrategy() instanceof HumanPlayerTwo)
+        {
+            builder.setTwo(new Player("Patric", "Patrick@Test.de", "Tic Tac Toe Newbie", new Date(2017, 5, 5)));
+        }else{
+            builder.setTwo(null);
         }
 
 
+        TicTacToe game = builder.build();
+
+        game.accept(new Printer());
+
+        boolean isRunning = true;
+        int counter = 2;
+
+        while (isRunning)
+        {
+            if (counter % 2 == 0)
+            {
+                isRunning = game.doMove(game.readMove());
+            }
+            else
+            {
+                isRunning = game.simulatePlayerTwo();
+            }
+            counter++;
+        }
     }
 }
