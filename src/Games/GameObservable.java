@@ -2,7 +2,7 @@ package Games;
 
 import Observer.MoveListener;
 import Strategy.ComputePlayerTwo;
-import Visitor.Visitor;
+import Visitor.Interfaces.Visitor;
 import com.company.Player;
 
 import java.io.IOException;
@@ -49,5 +49,23 @@ public abstract class GameObservable implements Visitor
         return strategy.simulatePlayerTwo(this);
     }
 
+    public void addListener(MoveListener listener){
+        listeners.add(listener);
+    }
     public abstract boolean doMove(String move) throws IOException;
+
+    public ComputePlayerTwo getStrategy()
+    {
+        return strategy;
+    }
+
+    public Player getOne()
+    {
+        return one;
+    }
+
+    public Player getTwo()
+    {
+        return two;
+    }
 }

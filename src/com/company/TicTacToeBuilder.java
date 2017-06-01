@@ -18,26 +18,14 @@ public class TicTacToeBuilder
     ComputePlayerTwo strategy;
     ArrayList<MoveListener> listeners;
 
-    public TicTacToeBuilder(){listeners = new ArrayList<>();}
+    public TicTacToeBuilder()
+    {
+        listeners = new ArrayList<>();
+    }
 
     public Player getOne()
     {
         return one;
-    }
-
-    public Player getTwo()
-    {
-        return two;
-    }
-
-    public ComputePlayerTwo getStrategy()
-    {
-        return strategy;
-    }
-
-    public ArrayList<MoveListener> getListeners()
-    {
-        return listeners;
     }
 
     public void setOne(Player one)
@@ -45,9 +33,19 @@ public class TicTacToeBuilder
         this.one = one;
     }
 
+    public Player getTwo()
+    {
+        return two;
+    }
+
     public void setTwo(Player two)
     {
         this.two = two;
+    }
+
+    public ComputePlayerTwo getStrategy()
+    {
+        return strategy;
     }
 
     public void setStrategy(ComputePlayerTwo strategy)
@@ -55,12 +53,23 @@ public class TicTacToeBuilder
         this.strategy = strategy;
     }
 
+    public ArrayList<MoveListener> getListeners()
+    {
+        return listeners;
+    }
+
     public void addListeners(MoveListener listener)
     {
         listeners.add(listener);
     }
 
-    public TicTacToe build(){
-        return new TicTacToe(strategy,one,two);
+    public TicTacToe build()
+    {
+        TicTacToe game = new TicTacToe(strategy, one, two);
+        for (MoveListener listener : listeners)
+        {
+        game.addListener(listener);
+        }
+        return game;
     }
 }

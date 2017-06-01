@@ -1,6 +1,7 @@
 package Visitor;
 
 import Games.TicTacToe;
+import Visitor.Interfaces.WinVisitor;
 
 import java.util.HashMap;
 

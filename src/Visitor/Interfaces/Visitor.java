@@ -1,7 +1,6 @@
-package Visitor;
+package Visitor.Interfaces;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Marcus on 28.05.2017.

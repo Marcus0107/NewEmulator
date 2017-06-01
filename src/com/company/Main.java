@@ -13,16 +13,16 @@ public class Main
 
     public static void main(String[] args) throws IOException
     {
-
+        //To´do a move input e.g. "A1 O", first part for position in grid, second for figure
+        //Easy strategy uses X, so if playing against KI, user everything but X
         TicTacToeBuilder builder = new TicTacToeBuilder();
         builder.setOne(new Player("Marcus", "Marcus@Test.de", "Tic Tac Toe Master", new Date(2017, 1, 1)));
 
-        builder.setStrategy(new HumanPlayerTwo());
+        builder.setStrategy(new EasyPlayerTwo());
         builder.addListeners((game1, move) ->
         {
             game1.addMove(move);
             System.out.println("Pop up - your opponent moved");
-
         });
 
         if (builder.getStrategy() instanceof HumanPlayerTwo)
@@ -31,7 +31,6 @@ public class Main
         }else{
             builder.setTwo(null);
         }
-
 
         TicTacToe game = builder.build();
 

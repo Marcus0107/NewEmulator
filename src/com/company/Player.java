@@ -17,4 +17,24 @@ public class Player {
         Displayname = displayname;
         this.memberSince = memberSince;
     }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public String getDisplayname()
+    {
+        return Displayname;
+    }
+
+    public Date getMemberSince()
+    {
+        return memberSince;
+    }
 }

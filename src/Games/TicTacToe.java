@@ -3,6 +3,9 @@ package Games;
 import Observer.MoveListener;
 import Strategy.ComputePlayerTwo;
 import Visitor.*;
+import Visitor.Interfaces.LegalMovesVis;
+import Visitor.Interfaces.PrintVis;
+import Visitor.Interfaces.WinVisitor;
 import com.company.Player;
 
 import java.io.BufferedReader;
@@ -64,7 +67,7 @@ public class TicTacToe extends GameObservable
         {
             if (moves.size() % 2 == 1)
             {
-                System.out.printf("Player on wins");
+                System.out.printf("Player one wins");
             }
             else
             {
@@ -100,5 +103,7 @@ public class TicTacToe extends GameObservable
     {
         return false;
     }
+
+
 
 }

@@ -1,12 +1,13 @@
 package Visitor;
 
 import Games.TicTacToe;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import Visitor.Interfaces.PrintVis;
 
 /**
  * Created by Marcus on 28.05.2017.
  */
-public class Printer implements PrintVis  {
+public class Printer implements PrintVis
+{
     @Override
     public void accept(TicTacToe game) {
         String output = "";
